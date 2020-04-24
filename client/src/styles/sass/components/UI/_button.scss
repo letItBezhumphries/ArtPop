@@ -1,0 +1,33 @@
+
+.button {
+  border: rgb(48, 48, 48) 2px solid;
+  border-radius: .4rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  padding: .6rem 2.3rem;
+}
+
+.button-white {
+  border: rgb(48, 48, 48) 2px solid;
+  border-radius: .4rem;
+  text-transform: uppercase;
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+  padding: .6rem 2.2rem;
+
+  &:hover {
+    background-color: grey;
+    color: black;
+  }
+}
+
+.button-green {
+  background-color: white;
+  color: green;
+
+  &:hover {
+    background-color: yellowgreen;
+    color: black;
+  }
+}

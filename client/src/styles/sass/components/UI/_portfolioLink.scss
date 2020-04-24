@@ -1,0 +1,48 @@
+.PortfolioLink {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  
+  &__link:hover, 
+  &__portfolioCard-img,
+  &__portfolioCard-txt {
+      filter: brightness(1.1);
+      color: lighten(black, 15px);
+  }
+
+
+  &__portfolioCard-img {
+    padding-right: 1fr;
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position: relative;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+  
+  &__portfolioCard-txt {
+    text-transform: capitalize;
+    text-decoration: none;
+    letter-spacing: .75rem;
+    font-size: 2rem;
+    // text-align: center;
+    color: black;
+    // background-color: var(--color-black-light);
+    height: 6rem;
+    margin-top: 2rem;
+    // width: 100%;
+    
+    &:hover {
+      filter: brightness(1.1);
+      color: var(--primary-color);
+    }
+
+  }
+}

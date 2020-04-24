@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-require("dotenv").config();
-require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const calculateOrderTotal = require("../../client/src/utils/calculateOrderTotal");
+const keys = require("../../config/keys");
+const stripe = require("stripe")(keys.stripeSecretKey);
+// const calculateOrderTotal = require("../../client/src/utils/calculateOrderTotal");
 
 //models
 const Order = require("../../models/Order");
@@ -17,16 +16,14 @@ const auth = require("../../middleware/auth");
 // @access Private
 router.post("/", auth, async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user.id }).select(
-      "name email"
-    );
+    const user = await User.findOne({ _id: req.user.id }).select("name email");
     const account = await Account.findOne({
-      user: req.user.id
+      user: req.user.id,
     })
       .populate({ path: "cart.items.itemId", model: "image" })
       .select("-wishList");
 
-    const items = account.cart.items.map(i => {
+    const items = account.cart.items.map((i) => {
       return { quantity: i.quantity, item: { ...i.itemId._doc } };
     });
 
@@ -49,13 +46,13 @@ router.post("/", auth, async (req, res) => {
     const order = new Order({
       user: {
         name: user.name,
-        userId: req.user.id
+        userId: req.user.id,
       },
       items: items,
       totalCost: cart.total,
-      isPaid: false
+      isPaid: false,
     });
-    order.save();
+    await order.save();
 
     account.clearCart();
 
@@ -66,22 +63,17 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-
-
 // @route = POST api/shop/order/:id
-// @desc creates a new paymentIntent object -saving the clientSecret for this order to the order instance 
+// @desc creates a new paymentIntent object -saving the clientSecret for this order to the order instance
 //and sending the clientSecret back to the client
 // @access Private
 router.post("/:id", auth, async (req, res) => {
   try {
-    console.log('in api/shop/order:id, payment-intent req.body:', req.body);
-    
-    let { currency,
-      payment_method_id } = req.body;
+    console.log("in api/shop/order:id, payment-intent req.body:", req.body);
 
-    const user = await User.findOne({ _id: req.user.id }).select(
-      "name email"
-    );
+    let { currency, payment_method_id } = req.body;
+
+    const user = await User.findOne({ _id: req.user.id }).select("name email");
 
     let intent;
 
@@ -93,10 +85,10 @@ router.post("/:id", auth, async (req, res) => {
         amount: order.totalCost,
         currency: currency,
         metadata: {
-          order_id: order._id
+          order_id: order._id,
         },
-        confirmation_method: 'manual',
-        confirm: true
+        confirmation_method: "manual",
+        confirm: true,
       });
     } else {
       intent = await stripe.paymentIntents.create({
@@ -105,23 +97,27 @@ router.post("/:id", auth, async (req, res) => {
         payment_method_types: ["card"],
         setup_future_usage: "on_session",
         receipt_email: user.email,
-        // receipt_url: process.env.API_URL + "/payment-success"
+        // receipt_url: keys.apiUrl + "/payment-success"
       });
     }
 
-    console.log('in api/shop/order:id, init-payment-intent => clientSectret:', intent);
-    order.paymentIntent = intent.id
+    console.log(
+      "in api/shop/order:id, init-payment-intent => clientSectret:",
+      intent
+    );
+    order.paymentIntent = intent.id;
     order.clientSecret = intent.client_secret;
     await order.save();
 
-    res.status(201).json({ payment_intent_id: intent.id, client_secret: intent.client_secret });
+    res.status(201).json({
+      payment_intent_id: intent.id,
+      client_secret: intent.client_secret,
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
-
-
 
 //@route GET api/shop/order/:id
 //@desc get an order object containing details for a specified order by id
@@ -159,26 +155,19 @@ router.get("/all", auth, async (req, res) => {
 });
 
 //@route PUT api/shop/order/:id
-//@desc updates a order, like after payment confirmation has been made 
+//@desc updates a order, like after payment confirmation has been made
 //@access Private
 router.put("/id", auth, async (req, res) => {
   try {
-    
-  } catch (err) {
-    
-  }
+  } catch (err) {}
 });
-
 
 //@route DELETE api/shop/order/:id
 //@desc deletes a order that has been started
 //@access Private
 router.delete("/id", auth, async (req, res) => {
   try {
-    
-  } catch (err) {
-    
-  }
+  } catch (err) {}
 });
 
 module.exports = router;

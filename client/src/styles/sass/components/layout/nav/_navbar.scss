@@ -1,0 +1,312 @@
+.navbar {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 0.25rem 0;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  align-items: center;
+  opacity: 1;
+  top: 0;
+  z-index: 10;
+
+  &__logo {
+    flex: 0 1 10%;
+    height: 6rem;
+    padding: 0 4rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  &__links {
+    flex: 1;
+    height: 20%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0 0;
+    border-bottom: 1px black solid;
+    background: var(--primary-color, 0.7);
+    box-shadow: var(--shadow-dark);
+  }
+
+  &__link {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 6rem;
+    width: 6rem;
+  }
+
+  /* Style The Dropdown Button */
+  &__link:link,
+  &__link:visited &__dropbtn {
+    flex: 0 0 10%;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    // width: max-content;
+    width: 8rem;
+    background-color: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height: 2rem;
+
+    &:hover {
+      color: lighten(black, 15px);
+    }
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    z-index: 11;
+
+    &:hover {
+      fill: lighten(black, 25px);
+    }
+  }
+
+  &__dropdown &__dropbtn {
+    background-color: inherit;
+
+    // font-family: inherit;
+    margin: 0;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+  }
+
+  &__dropdown:hover &__dropdown-container {
+    display: flex;
+    background-color: rgb(26, 26, 26);
+    box-shadow: var(--shadow-medium);
+    z-index: 1001;
+  }
+
+  &__dropdown-container {
+    background-color: #000000;
+    /* need to set up a breakpoint so that if the image is too wide it will add some margin right to the container */
+    position: absolute;
+    display: none;
+    text-transform: uppercase;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 28rem;
+    min-height: 15rem;
+    transform: translateY(0.5%) translateX(-70%);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    -webkit-transitions: opacity 0.2s ease-in-out;
+    z-index: 1000;
+    &:hover {
+      display: flex;
+      color: #e5e5e5;
+      // z-index: 1100;
+      // opacity: 1;
+    }
+  }
+
+  &__dropdown-cart-list {
+    // margin-bottom: 1.5rem;
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    list-style-position: inside;
+    color: #9d9d9d;
+    font-weight: 400;
+    width: 100%;
+    line-height: 2.6rem;
+    // background-color: purple;
+  }
+
+  &__dropdown-cart-listItem {
+    list-style: none;
+    max-width: 100%;
+    max-height: 20rem;
+    // background-color: plum;
+  }
+
+  &__dropdown-item-link {
+    width: 100%;
+    height: 100%;
+    // background-color: peru;
+    display: inline-flex;
+    flex-direction: row;
+    list-style: none;
+    align-self: start;
+
+    &:hover {
+      color: lighten(#9d9d9d, 15px);
+      // color: white;
+      text-decoration: none;
+
+      img {
+        filter: brightness(1.1);
+      }
+
+      p {
+        color: #e5e5e5;
+      }
+    }
+  }
+
+  &__dropdown-item {
+    font-family: "Open sans";
+    color: #9d9d9d;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #3d3d3d;
+    line-height: 2rem;
+    margin-bottom: 1.5rem;
+    // background-color: sandybrown;
+    align-items: center;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  &__dropdown-item-details {
+    flex: 30%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: space-between;
+  }
+
+  &__dropdown-item-details p {
+    display: inline-block;
+  }
+
+  &__dropdown-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0.5px;
+  }
+
+  &__dropdown-item-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #e5e5e5;
+  }
+
+  &__dropdown-cart-icon {
+    fill: #e5e5e5;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-top: 6px;
+    margin-left: 16px;
+  }
+
+  &__dropdown-cart-total {
+    // font-size: larger;
+    font-family: "Comorant Garamond";
+    font-size: 1.1rem;
+    color: #e5e5e5;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+    padding-top: 0.4rem;
+    color: #9d9d9d;
+    span {
+      color: #e5e5e5;
+    }
+  }
+
+  &__dropdown-cart-btn {
+    border-color: #000000;
+    color: #e5e5e5;
+    background-color: #000000;
+    text-decoration: none;
+    text-align: left;
+    font-size: 1.1rem;
+    padding: 0 1.4rem;
+    line-height: 30px;
+    border: 2px solid #303030;
+    height: 2.8rem;
+    width: auto;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-around;
+    letter-spacing: 1px;
+    box-sizing: initial !important;
+
+    &:hover {
+      text-decoration: none;
+
+      svg {
+        fill: black;
+      }
+    }
+  }
+
+  &__cart-badge {
+    position: relative;
+    // background-color: gold;
+    display: none;
+    border-radius: 450px;
+    height: 1.8rem;
+    width: 1.8rem;
+    text-align: center;
+    background: #9d9d9d;
+    color: white;
+    transform: translate(-38%, -50%);
+    z-index: 1;
+  }
+}
+
+.name-first {
+  flex: 0 1 10%;
+  color: black;
+  font-size: 3.5rem;
+  z-index: 20;
+  text-decoration: underline black;
+}
+
+.name-last {
+  flex: 0 1 50%;
+  font-size: 9.5rem;
+  padding-top: 3rem;
+  clip-path: polygon(
+    0% 0%,
+    0 100%,
+    25% 100%,
+    0 57%,
+    100% 57%,
+    100% 60%,
+    0 59%,
+    25% 100%,
+    100% 100%,
+    100% 0
+  );
+  color: black;
+  z-index: 20;
+  transform: translateY(4px);
+}
+
+.dropdown-cart-item {
+  &--header {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 0;
+  }
+}

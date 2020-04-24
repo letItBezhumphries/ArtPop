@@ -5,77 +5,77 @@ const AccountSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "user",
-    required: true
+    required: true,
   },
   paymentMethod: {
-    type: String
+    type: String,
   },
   customerId: {
-    type: String
+    type: String,
   },
   addresses: [
     {
       street1: {
         type: String,
-        required: false
+        required: false,
       },
       street2: {
         type: Number,
-        required: false
+        required: false,
       },
       city: {
         type: String,
-        required: false
+        required: false,
       },
       state: {
         type: String,
-        required: false
+        required: false,
       },
       zip: {
         type: Number,
-        required: false
+        required: false,
       },
       country: {
         type: String,
-        required: false
+        required: false,
       },
       telephone: {
         type: String,
-        required: false
+        required: false,
       },
       current: {
         type: Boolean,
-        required: false
-      }
-    }
+        required: false,
+      },
+    },
   ],
   creditCards: [
     {
       card_name: {
         type: String,
-        required: true
+        required: true,
       },
       card_number: {
         type: String,
-        required: true
+        required: true,
       },
       expiry: {
         type: String,
-        required: true
+        required: true,
       },
       cvv: {
         type: Number,
-        required: true
+        required: true,
       },
       billing_zip: {
         type: Number,
-        required: true
+        required: true,
       },
       primary: {
         type: Boolean,
-        required: true
-      }
-    }
+        required: true,
+      },
+    },
   ],
   cart: {
     items: [
@@ -84,48 +84,48 @@ const AccountSchema = new Schema({
         itemId: {
           type: Schema.Types.ObjectId,
           ref: "image",
-          required: true
+          required: true,
         },
         quantity: {
           type: Number,
-          required: true
-        }
-      }
+          required: true,
+        },
+      },
     ],
     itemsCount: {
       type: Number,
-      required: true
+      required: true,
     },
     total: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   wishlist: [
     {
       artwork: {
         type: Schema.Types.ObjectId,
-        ref: "image"
-      }
-    }
-  ]
+        ref: "image",
+      },
+    },
+  ],
 });
 
-AccountSchema.methods.addToCart = function(artwork, quantity) {
+AccountSchema.methods.addToCart = function (artwork, quantity) {
   let newQuantity = 1;
-  const cartItemIndex = this.cart.items.findIndex(item => {
+  const cartItemIndex = this.cart.items.findIndex((item) => {
     // console.log('item.itemId equals', item.itemId.equals(artwork._id));
-    // return item.itemId.toString() === artwork._id.toString(); using toString() 
+    // return item.itemId.toString() === artwork._id.toString(); using toString()
     //to check the equality of objectIds in mongoose was not reliable and completely wasted time
-    //the last item or thus the last objectId was always listed as a string as if mongoose hadn't yet 
+    //the last item or thus the last objectId was always listed as a string as if mongoose hadn't yet
     //transformed the string value from it populated object form/  using equals() fixed this problem
     return item.itemId.equals(artwork._id);
     // return item._id.equals(artwork._id);
   });
-  
+
   const oldTotalAmnt = this.cart.total;
-  let newTotalAmnt = oldTotalAmnt + (artwork.price * quantity);
-  
+  let newTotalAmnt = oldTotalAmnt + artwork.price * quantity;
+
   const updatedCartItems = [...this.cart.items];
   let newItemsCount = this.cart.itemsCount + quantity;
   //check if the item already exists in the cart
@@ -136,36 +136,36 @@ AccountSchema.methods.addToCart = function(artwork, quantity) {
   } else {
     updatedCartItems.push({
       itemId: artwork._id,
-      quantity: newQuantity
+      quantity: newQuantity,
     });
   }
   const updatedCart = {
     items: updatedCartItems,
     total: newTotalAmnt,
-    itemsCount: newItemsCount
+    itemsCount: newItemsCount,
   };
 
   this.cart = updatedCart;
   // console.log("inside addToCart method", this.cart);
   return this.save();
-}
+};
 
-AccountSchema.methods.getCart = function() {
+AccountSchema.methods.getCart = function () {
   const cart = this.cart;
   return cart;
-}
+};
 
-AccountSchema.methods.removeFromCart = function(artwork, quantity, price) {
+AccountSchema.methods.removeFromCart = function (artwork, quantity, price) {
   //check if the item already exists in the cart
-  const cartItemIndex = this.cart.items.findIndex(item => {
-    return item.itemId.equals(artwork._id);   
-  }); 
+  const cartItemIndex = this.cart.items.findIndex((item) => {
+    return item.itemId.equals(artwork._id);
+  });
 
   const oldTotal = this.cart.total;
   const updatedTotal = oldTotal - price;
 
   const updatedCount = this.cart.itemsCount - 1;
-  
+
   const updatedCartItems = [...this.cart.items];
 
   //it the item has a quantity greater than 1 need to adjust that items quantity otherwise splice away the item
@@ -179,28 +179,26 @@ AccountSchema.methods.removeFromCart = function(artwork, quantity, price) {
   const updatedCart = {
     items: updatedCartItems,
     total: updatedTotal,
-    itemsCount: updatedCount
+    itemsCount: updatedCount,
   };
   this.cart = updatedCart;
-  console.log("removeFromCart, before return:", this.cart);
+  // console.log("removeFromCart, before return:", this.cart);
   return this.save();
-}
+};
 
-AccountSchema.methods.getShippingAddress = function() {
-  const shipTo = this.addresses.filter(address => address.current);
+AccountSchema.methods.getShippingAddress = function () {
+  const shipTo = this.addresses.filter((address) => address.current);
   return shipTo[0];
-}
+};
 
-
-AccountSchema.methods.clearCart = function() {
+AccountSchema.methods.clearCart = function () {
   const updatedCart = {
     items: [],
     total: 0,
-    itemsCount: 0
+    itemsCount: 0,
   };
   this.cart = updatedCart;
   return this.save();
-}
-
+};
 
 module.exports = Account = mongoose.model("account", AccountSchema);

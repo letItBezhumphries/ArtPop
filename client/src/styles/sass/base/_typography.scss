@@ -1,0 +1,77 @@
+%heading {
+  font-family: "Franklin Gothic Medium", "Cormorant Garamond", Arial, sans-serif;
+  font-weight: 400;
+}
+
+.heading-1 {
+  @extend %heading;
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-dark-blue-primary);
+  padding-left: 2rem;
+}
+
+.heading-primary {
+  color: var(--color-dark-blue-primary);
+  text-transform: uppercase;
+
+  // backface-visibility: hidden;
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 1rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out;
+  }
+}
+
+/* Text Styles*/
+.x-large {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.large {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-dark {
+  color: var(--dark-color);
+}
+
+.glow {
+  font-family: cursive;
+  font-size: 8rem;
+  color: #fff;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}

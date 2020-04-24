@@ -1,0 +1,129 @@
+.image-upload-form {
+  // background-color: olivedrab;
+  grid-row: 3 / -1;
+  grid-column: 1 / -1;
+
+  &__upper-box {
+    margin: 3rem 3rem;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    // background-color: darkgoldenrod;
+  }
+
+  &__form-group {
+    // background-color: #fff;
+    color: white;
+    // margin: 3rem 3rem;
+
+    width: 40%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &__file-input + label {
+    font-size: 2.25rem;
+    letter-spacing: 1.8px;
+
+    color: white;
+    display: inline-block;
+  }
+
+  &__file-input:focus + label {
+    outline: 1px dotted #000;
+    outline: --webkit-focus-ring-color auto 5px;
+  }
+
+  &__file-input:focus + label,
+  &__file-input + label:hover {
+    background-color: red;
+  }
+
+  &__file-input:focus + label,
+  &__file-input + label:hover {
+    .icon-upload {
+      fill: black;
+    }
+    .icon-fileType {
+      fill: black;
+    }
+  }
+
+  &__file-input + label {
+    cursor: pointer;
+  }
+
+  &__file-label {
+    margin-top: 2.5rem;
+    background-color: var(--primary-color);
+    font-size: 1.5rem;
+    letter-spacing: 1.2px;
+    text-align: center;
+    padding: 1.5rem;
+    text-transform: uppercase;
+    color: black;
+    box-shadow: var(--shadow-dark);
+  }
+
+  &__label-text {
+    margin-left: 0.75rem;
+  }
+
+  &__file-name {
+    width: min-content;
+    padding-top: 2rem;
+    text-align: baseline;
+    font-style: italic;
+    font-size: 3.5rem;
+    letter-spacing: 1.75px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    text-transform: uppercase;
+
+    border-bottom: black solid;
+
+    & strong {
+      height: 100%;
+      font-style: normal;
+      align-self: baseline;
+      font-size: 1.15rem;
+    }
+  }
+
+  &__btn {
+    margin: 3.25rem 1.25rem;
+    height: 4rem;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-dark);
+  }
+}
+
+.icon-upload {
+  height: 2.5rem;
+  width: 2.5rem;
+  fill: black;
+  z-index: 2;
+}
+
+.icon-fileType {
+  height: 2.75rem;
+  width: 2.75rem;
+  fill: red;
+  z-index: -5;
+  transform: translateX(-1.25rem) translateY(-0.45rem);
+}
+
+.name {
+  margin-left: 1rem;
+  font-size: 2rem;
+}

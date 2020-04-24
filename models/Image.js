@@ -1,50 +1,54 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 const ImageSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    // required: true
   },
   fileName: {
     type: String,
-    required: true
+    required: true,
   },
   imageUrl: {
     type: String,
-    required: true
+    // required: true
   },
   description: {
-    type: String
+    type: String,
   },
   portfolio: {
     type: String,
-    required: true
+    // required: true
   },
   isGallery: {
-    type: Boolean
-  }, 
+    type: Boolean,
+  },
   price: {
     type: Number,
-    required: true
+    // required: true
   },
   height: {
-    type: Number
+    type: Number,
   },
   width: {
-    type: Number
+    type: Number,
   },
   inStock: {
-    type: Boolean
+    type: Boolean,
   },
   year: {
-    type: Number
+    type: Number,
   },
   medium: {
-    type: String
+    type: String,
   },
   materials: {
-    type: String
-  }
+    type: String,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+  },
 });
 
 module.exports = Image = mongoose.model("image", ImageSchema);

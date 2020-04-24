@@ -1,0 +1,129 @@
+/* Forms */
+.login-form {
+  margin-top: 9rem;
+  padding: 2rem 2rem;
+  max-height: 80rem;
+  min-width: 60rem;
+  grid-row: 2 / -1;
+  grid-column: 2 / 10;
+  // background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 2rem 15rem;
+}
+
+.register-form {
+  margin-top: 9rem;
+  padding: 4rem 4rem;
+  max-height: 80rem;
+  min-width: 60rem;
+  grid-row: 2 / -1;
+  grid-column: 2 / 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 2rem 15rem;
+}
+
+.check-login-form {
+  background-color: violet;
+
+  &__entrance-text {
+    background-color: wheat;
+  }
+}
+
+.form-row {
+  background-color: #3b5998;
+  &__col-1 {
+    background-color: #c4302b;
+  }
+
+  &__col-2 {
+    background-color: #888;
+  }
+
+  &__col-1-of-1 {
+    background-color: #38a1f3;
+  }
+
+  &__label-for-checkbox {
+    background-color: green;
+  }
+}
+
+.btn-lost-password {
+  background-color: black;
+  color: white;
+}
+
+.form .form-group {
+  margin: 1.2rem 0;
+}
+
+.form .form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  display: block;
+  width: 60%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+.form input[type="submit"],
+button {
+  font: inherit;
+}
+
+.form .social-input {
+  display: flex;
+}
+
+.form .social-input i {
+  padding: 0.5rem;
+  width: 4rem;
+}
+
+.form .social-input i.fa-twitter {
+  color: #38a1f3;
+}
+
+.form .social-input i.fa-facebook {
+  color: #3b5998;
+}
+
+.form .social-input i.fa-instagram {
+  color: #3f729b;
+}
+
+.form .social-input i.fa-youtube {
+  color: #c4302b;
+}
+
+.form .social-input i.fa-linkedin {
+  color: #0077b5;
+}
+
+.table th,
+.table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.table th {
+  background: var(--light-color);
+}

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const keys = require("../config/keys");
 
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
   //Get the token from the header
 
   const token = req.header("x-auth-token");
@@ -9,19 +9,19 @@ module.exports = function(req, res, next) {
   //check if there is no token present
   if (!token) {
     return res.status(401).json({
-      msg: "No token, authorization denied"
+      msg: "No token, authorization denied",
     });
   }
 
   //token is present, verify token
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, keys.jwtSecret);
 
     req.user = decoded.user;
     next();
   } catch (err) {
     res.status(401).json({
-      msg: "token is no longer valid"
+      msg: "token is no longer valid",
     });
   }
 };

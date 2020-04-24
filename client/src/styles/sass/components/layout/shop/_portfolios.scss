@@ -1,0 +1,47 @@
+
+//will end up being a grid
+.portfolio {
+  min-height: 80rem;
+  max-width: 100vw;
+
+  // background-color: var(--color-grey-light-1);
+  background-color: green;
+  padding-top: 2rem;
+  grid-row: 3 / -1;
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  &__dashboard {
+    width: 70%;
+    height: 30rem;
+    background-color: blue;
+  }
+
+  // &__concept-card {
+    
+  // }
+
+  // &__concept-quote {
+
+  // }
+
+  // &__concept-citation {
+
+  // }
+
+  // &__journal {
+
+
+    
+  // }
+
+  
+}
+
+
+
+

@@ -1,0 +1,69 @@
+.artist-view {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  padding: 4rem 4rem;
+  max-height: 80rem;
+  min-width: 60rem;
+  grid-row: 2 / -1;
+  grid-column: 2 / 10;
+  background-color: var(--color-grey-light-1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+  display: grid;
+  grid-template-areas:
+    "head head"
+    "bio img"
+    "bio img"
+    "btn img";
+
+  .heading-1 {
+    margin-top: 3rem;
+    grid-area: head;
+  }
+
+  &__bio {
+    grid-area: bio;
+    // background-color: blueviolet;
+    // margin-top: 3rem;
+    padding: 4rem 6rem;
+    display: flex;
+    flex: 0 1 40rem;
+    text-align: left;
+  }
+
+  // &__text {
+  //   background-color: yellow;
+  //   flex: 1 0 48%;
+  //   padding: 2rem 2rem;
+  // }
+
+  &__photo-box {
+    grid-area: img;
+    width: 80%;
+    height: auto;
+  }
+
+  &__img {
+    // flex: 0 0 52%;
+    display: block;
+
+    width: 100%;
+    padding: 2rem 2rem;
+  }
+
+  &__contact-btn-box {
+    grid-area: btn;
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 0rem 2rem;
+    display: flex;
+    justify-content: space-around;
+
+    .btn-inline {
+      background-color: purple;
+      flex: 1;
+      height: 5rem;
+      border-radius: 12rem;
+    }
+  }
+}

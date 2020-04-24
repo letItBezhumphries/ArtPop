@@ -1,0 +1,71 @@
+.notifications {
+  // width: 80%;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  // background-color: greenyellow;
+}
+
+.cart-message {
+  font-family: "Raleway";
+  background-color: #fff;
+  font-size: 1.7rem;
+  display: block;
+  padding: 2.8rem, 2.1rem;
+  line-height: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+
+  &--added {
+    font-size: 1.7rem;
+  }
+
+  &--removed {
+    font-size: 1.7rem;
+  }
+
+  &--empty {
+    //position: relative;
+    display: block;
+    padding: 2.8rem 2.1rem;
+    background-color: #fff;
+    line-height: 3.8rem;
+    font-weight: 700;
+    font-size: 3.9rem;
+  }
+}
+
+.return-to-shop {
+  margin-top: 3.6rem;
+  // height: 4.2rem;
+  // width: 111rem;
+  //button has padding left and right of 23px
+  position: relative;
+  display: inline-block;
+  width: auto;
+  line-height: 3.8rem;
+  padding: 0 2.3rem;
+  border: 2px solid rgb(30, 30, 30);
+  text-align: left;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: 0;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  // transition: all .1s linear;
+}
+
+.header-prompt {
+  position: relative;
+  font-family: "Raleway";
+  background-color: #fff;
+  font-size: 1.3rem;
+  display: block;
+  padding: 2.8rem, 2.1rem;
+  line-height: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}

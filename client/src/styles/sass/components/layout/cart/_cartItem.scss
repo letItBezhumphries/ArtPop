@@ -1,0 +1,31 @@
+
+.item-remove {
+  border: 1px solid black;
+  // position: relative;
+  color: #888888;
+  
+  .btn-remove {
+    display: inline-block;
+    text-align: center;
+    // @include absCenter;
+    outline: none;
+    border: none;
+    color: inherit;
+    background-color: inherit;
+
+
+  }
+}
+
+
+.item-image {
+  height: 6.6rem;
+  overflow: hidden;
+/* */ 
+  &__thumbnail {
+    display: block;
+    height: 6rem;
+    width: 6rem;
+  }
+}
+

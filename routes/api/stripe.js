@@ -1,25 +1,31 @@
 const express = require("express");
 const router = express.Router();
-require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const calculateOrderTotal = require('../../client/src/utils/calculateOrderTotal');
-const generateResponse = require('../../client/src/utils/generateResponse');
+const keys = require("../../config/keys");
+const stripe = require("stripe")(keys.stripeSecretKey);
+const calculateOrderTotal = require("../../client/src/utils/calculateOrderTotal");
+const generateResponse = require("../../client/src/utils/generateResponse");
 
 //models
-const Order = require('../../models/Order');
+const Order = require("../../models/Order");
 const Account = require("../../models/Account");
 const User = require("../../models/User");
 const auth = require("../../middleware/auth");
 
-
 //@route POST api/stripe/payment-method
 //@desc
 //@access Private
-router.post('/payment-method', auth, async (req, res) => {
+router.post("/payment-method", auth, async (req, res) => {
   try {
     const { payment_method_id, shipping, payment_intent_id } = req.body;
 
-    console.log('api/stripe/payment-method handler => req.body:=> payment_intent_id:', payment_intent_id, "payment_method_id:", payment_method_id, "shipping:", shipping);
+    console.log(
+      "api/stripe/payment-method handler => req.body:=> payment_intent_id:",
+      payment_intent_id,
+      "payment_method_id:",
+      payment_method_id,
+      "shipping:",
+      shipping
+    );
 
     const user = await User.findById(req.user.id);
 
@@ -30,63 +36,74 @@ router.post('/payment-method', auth, async (req, res) => {
       email: user.email,
       payment_method: payment_method_id,
       invoice_settings: {
-        default_payment_method: "pm_1FWS6ZClCIKljWvsVCvkdyWg"
-      }
+        default_payment_method: "pm_1FWS6ZClCIKljWvsVCvkdyWg",
+      },
     });
 
     console.log("if isSavingCard been clicked", customer);
 
     account.paymentMethod = payment_method_id;
-    account.customerId = customer.id
-    
+    account.customerId = customer.id;
+
     await account.save();
 
     console.log("if isSavingCard been clicked", account);
 
     res.status(200).json(account);
-    
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
-})
-
-
-
-
+});
 
 // @route = POST /api/stripe/payment-intent
 // @desc creates a payment intent on the stripe database
 // @access Private
-router.post('/payment', auth, async (req, res) => {
+router.post("/payment", auth, async (req, res) => {
   try {
-
     const user = await User.findById(req.user.id);
     const account = await Account.findOne({
-      user: req.user.id
+      user: req.user.id,
     })
       .populate({ path: "cart.items.itemId", model: "image" })
       .select("-wishList");
 
     let order = await account.getCart();
-    
-    const { payment_intent_id, payment_method_id, currency, isSavingCard, shipping } = req.body;
 
-    console.log('api/stripe/payment, payment_intent_id:', payment_intent_id, "payment_method_id:", payment_method_id, "currency:", currency, "isSavingCard:", isSavingCard, "shipping:", shipping);
+    const {
+      payment_intent_id,
+      payment_method_id,
+      currency,
+      isSavingCard,
+      shipping,
+    } = req.body;
+
+    console.log(
+      "api/stripe/payment, payment_intent_id:",
+      payment_intent_id,
+      "payment_method_id:",
+      payment_method_id,
+      "currency:",
+      currency,
+      "isSavingCard:",
+      isSavingCard,
+      "shipping:",
+      shipping
+    );
 
     const { street, unit, city, state, country, zip } = shipping;
 
     const orderTotal = calculateOrderTotal(order.items);
 
     let intent;
-    
+
     //check the req.body for the paymentMethod_id
     //if no payment_intent has been started
     if (!payment_intent_id) {
       //create new PaymentIntent
       let paymentIntentData = {
         amount: orderTotal,
-        currency: 'usd',
+        currency: "usd",
         payment_method: payment_method_id,
         confirmation_method: "manual",
         confirm: true,
@@ -98,23 +115,21 @@ router.post('/payment', auth, async (req, res) => {
       };
 
       intent = await stripe.paymentIntents.create(paymentIntentData);
-
     } else {
       intent = await stripe.paymentIntents.confirm(payment_intent_id, {
-        payment_method: payment_method_id
+        payment_method: payment_method_id,
       });
     }
-    console.log('in api/post/payment-intent, paymentIntentObject:', intent);
-    
+    console.log("in api/post/payment-intent, paymentIntentObject:", intent);
+
     let successfulResponse = generateResponse(intent);
     console.log("in api/post/payment, response:", successfulResponse);
 
     res.status(200).json(successfulResponse);
-
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
 // // Update PaymentIntent with shipping cost.
 // router.post("/payment_intents/:id/shipping_change", async (req, res) => {
@@ -139,7 +154,7 @@ router.post("/webhook", auth, async (req, res) => {
   let data;
   let eventType;
   // Check if webhook signing is configured.
-  if (process.env.STRIPE_WEBHOOK_SECRET) {
+  if (keys.stripeWebhookSecret) {
     // Retrieve the event by verifying the signature using the raw body and secret.
     let event;
     let signature = req.headers["stripe-signature"];
@@ -148,7 +163,7 @@ router.post("/webhook", auth, async (req, res) => {
       event = stripe.webhooks.constructEvent(
         req.rawBody,
         signature,
-        process.env.STRIPE_WEBHOOK_SECRET
+        keys.stripeWebhookSecret
       );
     } catch (err) {
       console.log(`⚠️ Webhook signature verification failed.`);
@@ -178,7 +193,7 @@ router.post("/webhook", auth, async (req, res) => {
   }
 
   if (eventType === "payment_intent.requires_payment_method") {
-    console.log('need to provide an authenticated payment method!!!');
+    console.log("need to provide an authenticated payment method!!!");
   }
 
   if (eventType === "payment_intent.payment_failed") {
@@ -188,7 +203,6 @@ router.post("/webhook", auth, async (req, res) => {
 
   res.sendStatus(200);
 });
-
 
 // Webhook handler to process payments for sources asynchronously.
 // router.post("/webhook", async (req, res) => {
@@ -309,7 +323,5 @@ router.post("/webhook", auth, async (req, res) => {
 //   const paymentIntent = await stripe.paymentIntents.retrieve(req.params.id);
 //   res.json({ paymentIntent: { status: paymentIntent.status } });
 // });
-
-
 
 module.exports = router;

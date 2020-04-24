@@ -1,0 +1,108 @@
+.cart {
+  font-family: 'Cormorant Garamond';
+  margin-top: 3rem;
+  padding: 4rem 4rem;
+  min-height: 120rem;
+  width: 100%;
+  grid-row: 2 / -1;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  // text-align: center;
+  // background-color: orange;
+  
+
+  &__heading {
+    font-size: 5rem;
+    text-transform: uppercase;
+    margin-bottom: 5rem;
+  }
+
+  &__notices-box {
+    // background-color: purple;
+    margin-bottom: 2.5rem;
+    padding: 2.8rem 2.1rem;
+    display: flex;
+    flex-direction: row;
+    justify-items: space-between;
+  }
+
+  &__items-table {
+    background: var(--light-color);
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid black;
+
+    th {
+      padding: 1.3rem 1rem;
+      font-size: 1.4rem;
+      color: black;
+      text-align: left;
+      text-transform: uppercase;
+      background: white;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    th:last-child {
+      border-right: 1px solid black;
+    }
+
+    tr:not(:last-child) {
+      border-bottom: 1px solid black;
+      // border-right: 1px solid black;
+
+      td:first-child {
+        // text-align: center;
+        height: 6.3rem;
+        width: .4rem;
+        // background-color: red;
+
+        font-size: 20px;
+        font-weight: 400;
+        border-collapse: collapse;
+        border-spacing: 0;
+        color: #888;
+        vertical-align: middle;
+        text-align: center;
+        border-right: 1px solid #e0dede;
+      }
+      
+    }
+
+    tr:last-child {
+      background-color: blue;  
+    }
+
+
+
+
+
+
+    td {
+      // padding: .5rem 1rem;
+      text-align: left;
+      color: #888888;
+      font-size: 2.2rem;
+      background: white;
+    }
+  }
+
+  &__cart-summary {
+    display: flex;
+    align-self: flex-end;
+    padding: 2rem 2rem;
+    flex-direction: column;
+    justify-items: flex-end;
+    width: 30%;
+    margin-top: 2rem;
+
+
+
+  }
+}
+
+
+
+
+

@@ -1,0 +1,43 @@
+
+.cart-summary {
+  margin-bottom: 3.1rem;
+
+  &__header {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+  }
+
+  &__table {
+    text-align: left;
+    vertical-align: middle;
+    font-size: 2.2rem;
+
+
+    tbody {
+      vertical-align: baseline;
+    }
+
+    th {
+      color: black;
+      padding: .5rem .7rem .5rem 0rem;
+      font-size: 2rem;
+    }
+
+    td {
+      color: #888888;
+      font-size: 2rem;
+
+      & span {
+        font-size: 2rem;
+      }
+    }
+
+  }
+
+  &__cart-total {
+    font-size: 2.7rem;
+  }
+}

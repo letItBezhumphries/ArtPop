@@ -1,0 +1,297 @@
+.checkout {
+  font-family: 'Cormorant Garamond';
+  margin-top: 3rem;
+  padding: 4rem 4rem;
+  min-height: 120rem;
+  width: 100%;
+  grid-row: 2 / -1;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__option {
+    @include prompt;
+    font-size: 1.3rem;
+    color: #303030;
+    padding: 2.8rem 2.1rem;
+    
+  }
+
+  &__login-toggle {
+    font-size: 1.3rem;
+    margin-left: .5rem;
+  }
+
+  &__coupon-option {
+    display: flex;
+    width: 100%;
+    & label {
+      margin-right: .5rem;
+      font-size: 1.3rem;
+    }
+
+    & span {
+      font-size: 1.3rem;
+      cursor: pointer;
+      flex: 40%;
+      text-decoration: none;
+    }
+  }
+
+  &__coupon-input-panel {
+    margin: 5rem 2rem;
+  }
+
+  &__summary {
+    background-color: white;
+  }
+
+  &__header {
+    background-color: white;
+    margin-top: 2.3rem;
+    margin-bottom: 2rem;
+    font-size: 1.7rem;
+    font-family: 'Cormorant Garamond'
+  }
+
+  &__table {
+    background-color: white;
+    width: 100%;
+    vertical-align: middle;
+    text-align: left;
+    position: relative;
+    font-size: 2rem;
+    margin-bottom: 3.3rem;
+    line-height: 2.6rem;
+    display: table;
+    zoom: 1;
+
+    & thead {
+      background-color: white;
+      vertical-align: baseline;
+      height: 4.9rem;
+      border-top: 1px solid #e6e6e6;
+      border-bottom: 1px solid #e6e6e6;
+      border-left: 1px solid #e6e6e6;
+      border-right: 1px solid #e6e6e6;
+    }
+
+    & tr {
+      height: 4.7rem;
+      font-size: 2rem;
+    }
+
+    & th {
+      background-color: white;
+      font-family: 'Raleway';
+      padding: 1rem 1.3rem;
+      text-align: center;
+      height: 2.2rem;
+      font-weight: 600;
+      font-size: 1.4rem;
+    }
+
+    & tbody {
+      background-color: white;
+      & tr {
+        background-color: white;
+        padding: 1rem;
+        text-align: center;
+        vertical-align: middle;
+        color: rgb(136,136,136);
+        
+        & td {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    & tfoot {
+      font-size: 2rem;
+      & tr {
+        background-color: white;
+        padding: 1rem;
+        text-align: center;
+        vertical-align: middle;
+        color: rgb(136,136,136);
+        
+        & td {
+          font-size: 2rem;
+          & span {
+            font-size: inherit;
+          }
+        }
+      }      
+    }
+  }
+}
+
+.result,
+.error {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: #e4584c;
+}
+
+.result {
+  color: #666ee8;
+}
+
+
+.card-form {
+  max-width: 800px;
+  margin: 80px auto;
+  // background-color: violet;
+  padding: 1rem 0rem 0rem 3.5rem;
+  text-align: left;
+  line-height: 2.6rem;
+  font-family: 'Cormorant Garamond';
+  font-size: 2rem;
+  border: 1px solid rgb(224,222,222);
+  width: 60rem;
+
+  &__header {
+    margin: 3.6rem 0rem;  
+  }
+
+  &__form-row {
+    padding: .8rem;
+    width: 100%;
+  }
+
+  &__label {
+    color: #000000;
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: 'Cormorant Garamond';
+    display: block;
+    margin-left: 4rem;
+  }
+
+  &__input {
+    display: block;
+    border: none;
+    font-size: 18px;
+    margin: 10px 0 20px 0;
+    max-width: 100%;
+    padding: 20px 24px;
+    box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+      rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+    border-radius: 4px;
+    background: white;
+    color: #424770;
+    letter-spacing: 0.025em;
+    width: 500px;
+
+    &::placeholder {
+      color: #aab7c4;
+    }
+  }
+
+  &__button {
+    white-space: nowrap;
+    border: 0;
+    outline: 0;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    background-color: #6772e5;
+    text-decoration: none;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    margin-left: 9rem;
+
+      &:hover{
+        color: #fff;
+        cursor: pointer;
+        background-color: #7795f8;
+        transform: translateY(-1px);
+        box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      &[disabled] {
+        opacity: 0.6;
+      }
+
+
+    }
+    &__save-card-label {
+        font-size: 1.4rem;
+    }
+}
+
+.StripeElement {
+  background-color: white;
+  border-radius: 4px;
+  padding: 2rem 2.4rem;
+  width: 50rem;
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+  rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  color: #424770;
+  letter-spacing: 0.025em;
+  font-size: 1.8rem;
+}
+
+.billing-form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  &__col-1-of-2 {
+    flex: 50%;
+  }
+
+  &__col-2-of-2 {
+    flex: 50%;
+  }
+
+  &__header {
+    font-size: 1.7rem;
+  }
+
+  &__input-label {
+    font-size: 1.7rem;
+    margin-left: 1rem;
+  }
+}
+
+.select-option {
+  display: block;
+  border: none;
+  font-size: 18px;
+  margin: 10px 0 20px 0;
+  max-width: 100%;
+  padding: 20px 24px;
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  border-radius: 4px;
+  background: white;
+  color: #424770;
+  letter-spacing: 0.025em;
+  width: 500px;
+}
+
+.option-text {
+  color: #aab7c4;
+}
+

@@ -28,6 +28,7 @@
     "express-fileupload": "^1.1.6",
     "express-validator": "^6.4.0",
     "gridfs-stream": "^1.1.1",
+    "http-proxy-middleware": "^0.21.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.7",

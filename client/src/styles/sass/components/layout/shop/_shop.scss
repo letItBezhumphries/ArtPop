@@ -1,0 +1,178 @@
+.shop {
+  font-family: "Cormorant Garamond";
+  margin-top: 3rem;
+  padding: 0rem 4rem;
+  min-height: 100rem;
+  width: 100%;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__heading {
+    margin-top: 7rem;
+    font-size: 5.5rem;
+    text-transform: uppercase;
+    margin-bottom: 5rem;
+  }
+
+  &__search-box {
+    font-size: 5rem;
+    text-transform: uppercase;
+    min-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__search-heading {
+    align-self: flex-start;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__search {
+    align-self: flex-start;
+    width: 100%;
+    display: flex;
+  }
+
+  .search__input {
+    font-size: 70%;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    width: 80%;
+    overflow: hidden;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+    }
+  }
+
+  .search__input:focus + .search__button {
+    background-color: var(--color-grey-light-3);
+  }
+
+  .search__button {
+    background-color: var(--color-grey-light-2);
+    width: 4rem;
+    height: 4rem;
+    align-self: center;
+    border: none;
+    transform: translateX(-6.5rem);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .search__icon {
+    height: 80%;
+    width: 80%;
+    fill: var(--color-grey-dark-3);
+    z-index: -1;
+  }
+
+  &__featured-collections {
+    min-width: 110rem;
+    margin-top: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px black solid;
+  }
+
+  &__featured-artwork {
+    // min-height: 80rem;
+    min-width: 100vw;
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    &--heading {
+      flex: 100%;
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      // margin-right: 80rem;
+      display: flex;
+      justify-content: flex-start;
+
+      &--heading-sub {
+        font-size: 4rem;
+        font-style: italic;
+      }
+    }
+
+    &--inventory {
+      flex: 100%;
+    }
+  }
+
+  &__prints {
+    background-color: bisque;
+    margin-top: 5rem;
+    min-height: 80rem;
+    min-width: 110rem;
+    margin-top: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.heading {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  margin-right: 20rem;
+  // background-color: pink;
+  // display: block;
+}
+
+.inventory {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  &__artwork {
+    flex: 1 0 50%;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.filter-toolbar {
+  margin-top: 4rem;
+  height: 20rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.filter-form {
+  margin-left: 3rem;
+}
+
+.result-count {
+  margin-right: 3rem;
+  font-size: 2.2rem;
+  font-weight: 400;
+  // text-rendering: geometricPrecision;
+}

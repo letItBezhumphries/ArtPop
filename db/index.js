@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose = require("mongoose");
+const keys = require("../config/keys");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(keys.mongoURI, {
       useNewUrlParser: true,
       useCreateIndex: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     });
 
-    console.log('MongoDB Connected...');
+    console.log("MongoDB Connected...");
   } catch (err) {
     console.error(err.message);
     // Exit process with failure
@@ -18,4 +18,3 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
-

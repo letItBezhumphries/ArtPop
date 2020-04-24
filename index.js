@@ -1,9 +1,10 @@
 const express = require("express");
-require("dotenv").config();
+// require("dotenv").config();
 const connectDB = require("./db/index");
 const path = require("path");
 const bodyParser = require("body-parser");
-
+const fileUpload = require("express-fileupload");
+const fs = require("fs");
 const app = express();
 
 //connect the database
@@ -19,11 +20,11 @@ app.use(
     extended: false,
     //need the raw body to verify webhook signatures
     //compute only when req is hitting the stripe webhook endpoint
-    verify: function(req, res, buf) {
+    verify: function (req, res, buf) {
       if (req.originalUrl.startsWith("/api/stripe/webhook")) {
         req.rawBody = buf.toString();
       }
-    }
+    },
   })
 );
 
@@ -42,6 +43,8 @@ app.use((req, res, next) => {
   next();
 });
 
+// app.use(fileUpload());
+
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(express.static(path.join(__dirname, "./public/uploads")));
 
@@ -49,28 +52,56 @@ app.use(express.static(path.join(__dirname, "./public/uploads")));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/images", require("./routes/api/store"));
-
 app.use("/admin/upload", require("./routes/admin/uploads"));
-// app.use("/admin/inventory", require("./routes/admin/inventory"));
+app.use("/admin/exhibitions", require("./routes/admin/exhibitions"));
 
 app.use("/api/shop/my-cart", require("./routes/api/cart"));
 app.use("/api/shop/my-account", require("./routes/api/account"));
 app.use("/api/shop/order", require("./routes/api/order"));
 app.use("/api/stripe", require("./routes/api/stripe"));
 
-// if (process.env.NODE_ENV === "production") {
-//   // Set static folder
-//   app.use(express.static("client/build"));
+// @route POST admin/upload
+// @desc uploads the image into the working directory
+app.post("/upload", fileUpload(), (req, res) => {
+  if (req.files === null) {
+    console.log("No File was Uploaded");
+    return res.status(400).json({ msg: "No file uploaded" });
+  }
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-//   });
-// }
+  const file = req.files.file;
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+  file.mv(`${__dirname}/client/public/uploads/${file.name}`, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+  });
 });
 
-const PORT = process.env.PORT || 5009;
+// app.delete("/upload", fileUpload(), async (req, res) => {
+//   try {
+//     if (req.files === null) {
+//       console.log("No File was Uploaded");
+//       return res.status(400).json({ msg: "No file uploaded" });
+//     }
+//     const file = req.files.file;
+
+//     await fs.syn
+//   } catch (err) {}
+// });
+
+if (process.env.NODE_ENV === "production") {
+  //serve production assets
+  app.use(express.static("client/build"));
+
+  // if it doesn't recognize route serve up index.html
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 3003;
 
 app.listen(PORT, () => console.log(`App is listening on ${PORT}`));

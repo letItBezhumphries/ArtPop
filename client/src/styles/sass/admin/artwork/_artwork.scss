@@ -1,0 +1,73 @@
+.artwork-page {
+  // background-color: black;
+
+  padding-top: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 2rem;
+  min-height: 220rem;
+  min-width: 100%;
+  grid-row: 2 / -1;
+  grid-column: 1 / -1;
+  display: flex;
+  margin-bottom: 6rem;
+
+  &__forms-container {
+    margin-left: 1rem;
+    // background-color: violet;
+    flex: 1;
+  }
+
+  &__header {
+    font-family: "Cormorant Garamond";
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 900;
+    color: whitesmoke;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.25px;
+    width: 100%;
+    min-height: min-content;
+  }
+
+  &__form-actions {
+    margin-left: 2rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: wheat;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 1.15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-dark);
+  }
+
+  &__save-prompt {
+    margin-left: 2rem;
+    padding-top: 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    // background-color: white;
+    padding: 0.4rem;
+  }
+
+  &__cancel-btn {
+    flex: 0 1 50%;
+    letter-spacing: 1.8px;
+    height: 4rem;
+  }
+
+  &__continue-btn {
+    flex: 0 1 50%;
+    height: 4rem;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+}

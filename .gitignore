@@ -30,6 +30,7 @@ dist/
 
 .nvmrc
 
+dev.js
 
 .env
 .env.dev

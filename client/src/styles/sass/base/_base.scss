@@ -1,0 +1,176 @@
+/*
+COLORS
+*/
+
+:root {
+  --primary-color: #17a2b8;
+  --dark-color: #343a40;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+
+  --color-black-dark: black;
+  --color-black-light: #474e58;
+
+  --color-primary: #212396;
+  --color-primary-light: #354885;
+  --color-primary-dark: #0c0755;
+
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+
+  --shadow-light: 0 2rem 5rem 5rem rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 1.5rem 4rem 5rem rgba(black, 0.15);
+  --shadow-dark: 0 2rem 6rem 2rem rgba(0, 0, 0, 0.3);
+
+  --line: 1px solid var(--color-grey-light-1);
+}
+
+//can't use or set media queries with css variables but can use sass variables like so below
+//rememeber using em for queries?
+
+$bp-largest: 75em; //1200px / 16 = 75em
+$bp-large: 68.75em; //1100px / 16 =
+$bp-medium: 56.25em; //900px / 16 =
+$bp-small: 37.5em; //600px / 16 =
+$bp-smallest: 32.25em; //500px / 16
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+*,
+html,
+body {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container-main {
+  // margin: auto;
+  max-width: 100vw;
+  background-color: #fff;
+  // max-width: 120rem;
+  overflow: hidden;
+  // padding: 0 2rem;
+  // margin-top: 6rem;
+  // margin-bottom: 3rem;
+  min-height: 200vh;
+
+  // display: grid;
+  // grid-template-rows: 2rem 1fr repeat(6, 10vh) 1fr;
+  // grid-template-columns: 1fr repeat(8, minmax(min-content, 10rem)) 1fr;
+  // grid-gap: 0.5rem;
+  // grid-auto-flow: column;
+}
+
+/* buttons and alerts Login and Register*/
+.btn {
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 0.1rem;
+  text-align: center;
+  margin: 0.3rem;
+  background: var(--light-color);
+  color: #333;
+}
+
+.alert {
+  height: 4rem;
+  padding: 1.25rem 1.25rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+  display: flex;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.btn-primary,
+.bg-primary,
+.badge-primary,
+.alert-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.btn-light,
+.bg-light,
+.badge-light,
+.alert-light {
+  background: var(--light-color);
+  color: #333;
+}
+
+.btn-dark,
+.bg-dark,
+.badge-dark,
+.alert-dark {
+  background: var(--dark-color);
+  color: #fff;
+}
+
+.btn-danger,
+.bg-danger,
+.badge-danger,
+.alert-danger {
+  background: var(--danger-color);
+  color: #fff;
+}
+
+.btn-success,
+.bg-success,
+.badge-success,
+.alert-success {
+  background: var(--success-color);
+  color: #fff;
+}
+
+.btn-white,
+.bg-white,
+.badge-white,
+.alert-white {
+  background: #fff;
+  color: #333;
+  border: #ccc solid 1px;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.bg-light,
+.badge-light {
+  border: #ccc solid 1px;
+}
