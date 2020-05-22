@@ -4,7 +4,6 @@ const connectDB = require("./db/index");
 const path = require("path");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const fs = require("fs");
 const app = express();
 
 //connect the database
